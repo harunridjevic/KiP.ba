@@ -14,11 +14,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 <html>
 
 <head>
-	<link rel="stylesheet" href="s.css">
     <title>KIP.ba</title>
 
 
-	<link rel="stylesheet" href="style.css" type="text/css">
+	<link rel="stylesheet" href="styles.css" type="text/css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
@@ -26,6 +25,38 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 </head>
 
 <body>
+	<!--CREATE-MODAL-->
+	
+	<div id="create-modal" class="create-modal">
+		<div class="modal-content">
+    <span id="close" class="close">&times;</span>
+    <p>KREIRANJE ARTIKLA</p>
+	<div class="modal-text">
+	<form action="insert.php" method="post" enctype="multipart/form-data">
+			<table id="modal-table">
+			<tr>
+               <td><label for="firstName">Naziv:</td>
+               <td><input type="text" name="naziv" id="naziv"></label></td>
+			</tr>
+			<tr>
+               <td><label for="firstName">Cijena:</td>
+               <td><input type="text" name="cijena" id="cijena"></label></td>
+			   </tr>
+			  <tr>
+			   <td><label for="firstName">Lokacija:</td>
+               <td><input type="text" name="lokacija" id="lokacija"></label></td>
+			   </tr>
+				<tr>
+				<td><label for="fileToUpload">Fotografija:</td>
+				<td><input type="file" name="image" ></td>
+				</label>
+				</tr>
+			</table>
+            <input type="submit" value="Submit" name="submit">
+         </form>
+	</div>
+  </div>
+	</div>
 	<!--sidebar-->
 	<div id="sidebar">
 			<img id="logo" src="logo/logov1transparent.png">
@@ -72,7 +103,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 			
 			<!--BOTTOM BUTTONS-->
 			<div id="bottom-buttons">
-			<button id="add-button">
+			<button id="add-button" onclick="showCreateModal()">
 				<svg style="width:70px;"xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
 </svg>
@@ -85,16 +116,12 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 		</div>
 		
 	<!--main content-->
-	<main>
-		<table border="1">
-		<tr>
-			<th>Index</th>
-			<th>Naziv</th>
-			<th>Cijena</th>
-			<th>Kontakt telefon</th>
-	</tr>
-	<?php
+	<main id="main">
+			
 	
+	
+	<?php
+	$grayOrWhite=1;
 	//search system
 	$pretraga="";
 	if(isset($_POST['search'])and $_POST['search']!=""){
@@ -108,12 +135,23 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 				
 			}else{
 				while($row2 = mysqli_fetch_array($res)){
-					echo "<tr>
-					<td>{$row2['id']}</td>
-					<td>{$row2['naziv']}</td>
-					<td>{$row2['cijena']}</td>
-					<td>{$row2['kontakt']}</td>
-					</tr>";
+					if($grayOrWhite){
+		  echo "<div class='article1'>
+				<img class='image' src='img/{$row2['id']}.jpg'>
+				<span class='article-title'>{$row2['naziv']}</span>
+				<span class='article-subtitle'>#{$row2['id']} - ".substr($row['datum-objave'],0,10)." - {$row2['lokacija']}</span>
+				<span class='price1'>{$row2['cijena']}KM</span>
+			</div>";
+		$grayOrWhite=0;
+	}	else{
+		echo "<div class='article2'>
+				<img class='image' src='img/{$row2['id']}.jpg'>
+				<span class='article-title'>{$row2['naziv']}</span>
+				<span class='article-subtitle'>#{$row2['id']} - ".substr($row['datum-objave'],0,10)." - {$row2['lokacija']}</span>
+				<span class='price2'>{$row2['cijena']}KM</span>
+			</div>";
+		$grayOrWhite=1;
+	}
 				}
 				
 			}
@@ -121,18 +159,114 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 	}//if search is empty just write out all the articles
 	else{
 		while($row = mysqli_fetch_assoc($retval)) {
-		  
-		  echo "<tr>
-					<td>{$row['id']}</td>
-					<td>{$row['naziv']}</td>
-					<td>{$row['cijena']}</td>
-					<td>{$row['kontakt']}</td>
-				</tr>";
-		}	}
+		  if($grayOrWhite){
+		  echo "<div class='article1'>
+				<img class='image' src='img/{$row['id']}.jpg'>
+				<span class='article-title'>{$row['naziv']}</span>
+				<span class='article-subtitle'>#{$row['id']} - ".substr($row['datum-objave'],0,10)." - {$row['lokacija']}</span>
+				<span class='price1'>{$row['cijena']}KM</span>
+			</div>";
+		$grayOrWhite=0;
+	}	else{
+		echo "<div class='article2'>
+				<img class='image' src='img/{$row['id']}.jpg'>
+				<span class='article-title'>{$row['naziv']}</span>
+				<span class='article-subtitle'>#{$row['id']} - ".substr($row['datum-objave'],0,10)." - {$row['lokacija']}</span>
+				<span class='price2'>{$row['cijena']}KM</span>
+			</div>";
+		$grayOrWhite=1;
+	}
+	}}
    ?>
 	</main>
 </body>
+<script>function init(){
+	new SmoothScroll(document,120,12)
+}
 
+function SmoothScroll(target, speed, smooth) {
+	if (target === document)
+		target = (document.scrollingElement 
+              || document.documentElement 
+              || document.body.parentNode 
+              || document.body) // cross browser support for document scrolling
+      
+	var moving = false
+	var pos = target.scrollTop
+  var frame = target === document.body 
+              && document.documentElement 
+              ? document.documentElement 
+              : target // safari is the new IE
+  
+	target.addEventListener('mousewheel', scrolled, { passive: false })
+	target.addEventListener('DOMMouseScroll', scrolled, { passive: false })
+
+	function scrolled(e) {
+		e.preventDefault(); // disable default scrolling
+
+		var delta = normalizeWheelDelta(e)
+
+		pos += -delta * speed
+		pos = Math.max(0, Math.min(pos, target.scrollHeight - frame.clientHeight)) // limit scrolling
+
+		if (!moving) update()
+	}
+
+	function normalizeWheelDelta(e){
+		if(e.detail){
+			if(e.wheelDelta)
+				return e.wheelDelta/e.detail/40 * (e.detail>0 ? 1 : -1) // Opera
+			else
+				return -e.detail/3 // Firefox
+		}else
+			return e.wheelDelta/120 // IE,Safari,Chrome
+	}
+
+	function update() {
+		moving = true
+    
+		var delta = (pos - target.scrollTop) / smooth
+    
+		target.scrollTop += delta
+    
+		if (Math.abs(delta) > 0.5)
+			requestFrame(update)
+		else
+			moving = false
+	}
+
+	var requestFrame = function() { // requestAnimationFrame cross browser
+		return (
+			window.requestAnimationFrame ||
+			window.webkitRequestAnimationFrame ||
+			window.mozRequestAnimationFrame ||
+			window.oRequestAnimationFrame ||
+			window.msRequestAnimationFrame ||
+			function(func) {
+				window.setTimeout(func, 1000 / 50);
+			}
+		);
+	}()
+}
+
+//create-modal
+var sidebar = document.getElementById('sidebar');
+	var modal = document.getElementById("create-modal");
+	var close = document.getElementById("close");
+	var createButton = document.getElementById("add-button");
+	
+	createButton.onclick = function() {
+	
+	 modal.classList.add("active");
+	 document.getElementById("main").classList.add("blur");
+	}
+
+close.onclick = function() {
+  modal.classList.remove("active");
+  document.getElementById("main").classList.remove("blur");
+}
+
+  </script>
 </html>
 
 <?php 

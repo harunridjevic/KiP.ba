@@ -1,0 +1,287 @@
+*{
+	margin:0;
+	padding:0;
+	font-family:'Inter';
+	box-sizing:border-box;
+	
+}
+main{
+	padding-left:300px;
+	overflow:scroll;
+}
+main.blur{
+	filter: blur(2px);
+}
+#sidebar::-webkit-scrollbar,main::-webkit-scrollbar {
+    width:0;
+}
+#sidebar{
+	position:fixed;
+	width:300px;
+	height:100%;
+	background-color:#F8F400;
+	text-align:center;
+	overflow-y:scroll;
+	overflow-x:hidden;
+	z-index:5;
+}
+
+#logo{
+	width:300px;
+}
+/*search*/
+#search{
+	width:185.75px;
+	height:30px;
+	background-color:white;
+	margin:0 auto;
+	border-radius:5px;
+	border:0;
+	float:left;
+	padding:0 5px;
+}
+
+#search-button{
+	padding:5px;
+	border:0;
+	background-color:white;
+	transition: 0.3s;
+	border-radius:5px;
+	width:50px;
+	height:30px;
+	float:right;
+}
+#search-button:hover{
+	border:0;
+	background-color:black;
+	color:white;
+	cursor:pointer;
+}
+#search-div{
+	padding:0 25px;
+}
+.icon{
+	width:20px;
+	margin:0;
+}
+
+#search:active,#search:focus,#icon:focus{
+	outline:0;
+}
+
+/*main buttons*/
+#profile-button{
+	background-color:white;
+	border:0;
+	width:260px;
+	height:60px;
+	border-radius:50px;
+	transition: 0.3s;
+	font-size:20pt;
+	margin:10px 0;
+}
+#profile-button:hover{
+	border:0;
+	background-color:black;
+	color:white;
+	cursor:pointer;
+}
+#main-buttons{
+	margin-top:50px;
+}
+#bottom-buttons{
+	position:fixed;
+	bottom:0;
+	width:300px;
+	height:100px;
+}
+
+@media (max-height:500px){
+	#bottom-buttons{
+	position:relative;
+}
+}
+#add-button{
+	width:90px;
+	height:90px;
+	float:right;
+	background-color:black;
+	margin: 0 15px 5px 0;
+	border-radius:25px;
+	transition: 0.3s;
+	color:white;
+	border:0;
+}
+#add-button:hover{
+	background-color:white;
+	color:black;
+	cursor:pointer;
+}
+#add-button:active,#add-button:focus{
+	outline:0;
+}
+#help{
+	font-size:40px;
+	position:absolute;
+	width:80px;
+	height:80px;
+	float:left;
+	border-radius:50px;
+	transition: 0.3s;
+	outline:0;
+	border:0;
+	bottom:10px;
+	left:25px;
+	background-color:white;
+	color:black;
+}
+#help:hover{
+	background-color:black;
+	color:white;
+	cursor:pointer;
+}
+#help:active,#help:focus{
+	outline:0;
+}
+#button-circle{
+	height:30px;
+	width:30px;
+	background-color:black;
+	position:absolute;
+	margin-top:1px;
+	margin-left:20px;
+	border-radius:50px;
+}
+
+#button-icons{
+	color:white;
+	width:20px;
+	height:20px;
+}
+
+/*article*/
+.article1{
+	background-color:#f8f8f8;
+	width:100%;
+	height:100px;
+	transition: 0.3s;
+	cursor:pointer;
+}
+.article1:hover{
+	background-color:black;
+	color:white;
+}
+.article1:hover .price1 { background-color: yellow; color:black;}
+.article2{
+	background-color:white;
+	width:100%;
+	height:100px;
+	transition: 0.3s;
+	cursor:pointer;
+}
+.article2:hover{
+	background-color:black;
+	color:white;
+}
+.article2:hover .price2 { background-color: yellow;color:black; }
+.image{
+	height:95px;
+	width:169px;
+	margin:2px;
+	border:2px solid black;
+	display:inline-block;
+	position:absolute;
+}
+
+.price1{
+	position:absolute;
+	right:0;
+	font-size:40px;
+	padding:25px;
+	background-color:#f8f8f8;
+	height:100px;
+	width:250px;
+	text-align:right;
+}
+.price2{
+	position:absolute;
+	right:0;
+	font-size:40px;
+	padding:25px;
+	background-color:white;
+	height:100px;
+	width:250px;
+	text-align:right;
+}
+.article-title{
+	position:absolute;
+	margin-left:180px;
+	padding-top:17px;
+	font-size:30px;
+	overflow:hidden;
+	white-space: nowrap;
+}
+.article-subtitle{
+	position:absolute;
+	margin-left:180px;
+	padding-top:57px;
+	font-size:20px;
+	overflow:hidden;
+	white-space: nowrap;
+}
+/*CREATE MODAL*/
+.create-modal{
+	border:5px solid black;
+	position:fixed;
+	right:0;
+	background-color:white;
+	width:calc(100% - 400px);
+	height:calc(100% - 50px);
+	z-index:3;
+	border-radius:50px;
+	margin:25px;
+	opacity:0;
+	top:-200%;
+	transform:translate(-5%,-55%) scale(0.5);
+	transition:opacity 200ms ease-in-out,top 200ms ease-in-out,transform 200ms ease-in-out;
+}
+.create-modal.active{
+	opacity:1;
+	top:50%;
+	transform:translate(-5%,-55%) scale(1);
+	transition: transform 200ms cubic-bezier(0.18,0.89,0.43,1.19);
+	
+}
+/* Modal Content/Box */
+.modal-content {
+	font-size:30px;
+  margin: 50px auto; /* 15% from the top and centered */
+  padding: 20px;
+  width: 90%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: gray;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal-text{
+	text-align:center;
+	margin:30px auto;
+	font-size:25px;
+	padding:10px;
+}
+
+#modal-table{
+	text-align:center;
+	margin:auto;
+}
