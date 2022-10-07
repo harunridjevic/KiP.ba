@@ -1,287 +1,394 @@
 *{
-	margin:0;
-	padding:0;
-	font-family:'Inter';
-	box-sizing:border-box;
-	
+     margin:0;
+     padding:0;
+     font-family:'Inter';
+     box-sizing:border-box;
 }
-main{
-	padding-left:300px;
-	overflow:scroll;
+ main{
+	 background-color:white;
+     position:fixed;
+     top:0;
+     width:100%;
+     padding-left:300px;
+     overflow:scroll;
+     transition: all .5s ease-in-out;
+     height:calc(100% + 25px);
 }
-main.blur{
-	filter: blur(2px);
+.darkened{
+     filter:brightness(60%);
 }
-#sidebar::-webkit-scrollbar,main::-webkit-scrollbar {
-    width:0;
+ #sidebar::-webkit-scrollbar,main::-webkit-scrollbar {
+     width:0;
 }
-#sidebar{
-	position:fixed;
-	width:300px;
-	height:100%;
-	background-color:#F8F400;
-	text-align:center;
-	overflow-y:scroll;
-	overflow-x:hidden;
-	z-index:5;
+ #sidebar{
+     position:fixed;
+     width:300px;
+     height:100%;
+     background-color:#F8F400;
+     text-align:center;
+     overflow-y:scroll;
+     overflow-x:hidden;
+     z-index:5;
 }
-
-#logo{
-	width:300px;
+ #logo{
+     width:300px;
 }
 /*search*/
-#search{
-	width:185.75px;
-	height:30px;
-	background-color:white;
-	margin:0 auto;
-	border-radius:5px;
-	border:0;
-	float:left;
-	padding:0 5px;
+ #search{
+     width:185.75px;
+     height:30px;
+     background-color:white;
+     margin:0 auto;
+     border-radius:5px;
+     border:0;
+     float:left;
+     padding:0 5px;
 }
-
-#search-button{
-	padding:5px;
-	border:0;
-	background-color:white;
-	transition: 0.3s;
-	border-radius:5px;
-	width:50px;
-	height:30px;
-	float:right;
+ #search-button{
+     padding:5px;
+     border:0;
+     background-color:white;
+     transition: 0.3s;
+     border-radius:5px;
+     width:50px;
+     height:30px;
+     float:right;
 }
-#search-button:hover{
-	border:0;
-	background-color:black;
-	color:white;
-	cursor:pointer;
+ #search-button:hover{
+     border:0;
+     background-color:black;
+     color:white;
+     cursor:pointer;
 }
-#search-div{
-	padding:0 25px;
+ #search-div{
+     padding:0 25px;
 }
-.icon{
-	width:20px;
-	margin:0;
+ .icon{
+     width:20px;
+     margin:0;
 }
-
-#search:active,#search:focus,#icon:focus{
-	outline:0;
+ #search:active,#search:focus,#icon:focus{
+     outline:0;
 }
-
 /*main buttons*/
-#profile-button{
-	background-color:white;
-	border:0;
-	width:260px;
-	height:60px;
-	border-radius:50px;
-	transition: 0.3s;
-	font-size:20pt;
-	margin:10px 0;
+ #profile-button{
+     background-color:white;
+     border:0;
+     width:260px;
+     height:60px;
+     border-radius:50px;
+     transition: 0.3s;
+     font-size:20pt;
+     margin:10px 0;
 }
-#profile-button:hover{
-	border:0;
-	background-color:black;
-	color:white;
-	cursor:pointer;
+ #profile-button:hover{
+     border:0;
+     background-color:black;
+     color:white;
+     cursor:pointer;
 }
-#main-buttons{
-	margin-top:50px;
+ #main-buttons{
+     margin-top:50px;
 }
-#bottom-buttons{
-	position:fixed;
-	bottom:0;
-	width:300px;
-	height:100px;
+ #bottom-buttons{
+     position:fixed;
+     bottom:0;
+     width:300px;
+     height:100px;
 }
-
-@media (max-height:500px){
-	#bottom-buttons{
-	position:relative;
+ @media (max-height:500px){
+     #bottom-buttons{
+         position:relative;
+    }
 }
+ #add-button{
+     width:90px;
+     height:90px;
+     float:right;
+     background-color:black;
+     margin: 0 15px 5px 0;
+     border-radius:25px;
+     transition: 0.3s;
+     color:white;
+     border:0;
 }
-#add-button{
-	width:90px;
-	height:90px;
-	float:right;
-	background-color:black;
-	margin: 0 15px 5px 0;
-	border-radius:25px;
-	transition: 0.3s;
-	color:white;
-	border:0;
+ #add-button:hover{
+     background-color:white;
+     color:black;
+     cursor:pointer;
 }
-#add-button:hover{
-	background-color:white;
-	color:black;
-	cursor:pointer;
+ #add-button:active,#add-button:focus{
+     outline:0;
 }
-#add-button:active,#add-button:focus{
-	outline:0;
+ #help{
+     font-size:40px;
+     position:absolute;
+     width:80px;
+     height:80px;
+     float:left;
+     border-radius:50px;
+     transition: 0.3s;
+     outline:0;
+     border:0;
+     bottom:10px;
+     left:25px;
+     background-color:white;
+     color:black;
 }
-#help{
-	font-size:40px;
-	position:absolute;
-	width:80px;
-	height:80px;
-	float:left;
-	border-radius:50px;
-	transition: 0.3s;
-	outline:0;
-	border:0;
-	bottom:10px;
-	left:25px;
-	background-color:white;
-	color:black;
+ #help:hover{
+     background-color:black;
+     color:white;
+     cursor:pointer;
 }
-#help:hover{
-	background-color:black;
-	color:white;
-	cursor:pointer;
+ #help:active,#help:focus{
+     outline:0;
 }
-#help:active,#help:focus{
-	outline:0;
+ #button-circle{
+     height:30px;
+     width:30px;
+     background-color:black;
+     position:absolute;
+     margin-top:1px;
+     margin-left:20px;
+     border-radius:50px;
 }
-#button-circle{
-	height:30px;
-	width:30px;
-	background-color:black;
-	position:absolute;
-	margin-top:1px;
-	margin-left:20px;
-	border-radius:50px;
+ #button-icons{
+     color:white;
+     width:20px;
+     height:20px;
 }
-
-#button-icons{
-	color:white;
-	width:20px;
-	height:20px;
-}
-
 /*article*/
-.article1{
-	background-color:#f8f8f8;
-	width:100%;
-	height:100px;
-	transition: 0.3s;
-	cursor:pointer;
+ .article1{
+     background-color:#f8f8f8;
+     width:100%;
+     height:100px;
+     transition: 0.3s;
+     cursor:pointer;
 }
-.article1:hover{
-	background-color:black;
-	color:white;
+ .article1:hover{
+     background-color:black;
+     color:white;
 }
-.article1:hover .price1 { background-color: yellow; color:black;}
-.article2{
-	background-color:white;
-	width:100%;
-	height:100px;
-	transition: 0.3s;
-	cursor:pointer;
+ .article1:hover .price1 {
+     background-color: yellow;
+     color:black;
 }
-.article2:hover{
-	background-color:black;
-	color:white;
+ .article2{
+     background-color:white;
+     width:100%;
+     height:100px;
+     transition: 0.3s;
+     cursor:pointer;
 }
-.article2:hover .price2 { background-color: yellow;color:black; }
-.image{
-	height:95px;
-	width:169px;
-	margin:2px;
-	border:2px solid black;
-	display:inline-block;
-	position:absolute;
+ .article2:hover{
+     background-color:black;
+     color:white;
 }
-
-.price1{
-	position:absolute;
-	right:0;
-	font-size:40px;
-	padding:25px;
-	background-color:#f8f8f8;
-	height:100px;
-	width:250px;
-	text-align:right;
+ .article2:hover .price2 {
+     background-color: yellow;
+    color:black;
 }
-.price2{
-	position:absolute;
-	right:0;
-	font-size:40px;
-	padding:25px;
-	background-color:white;
-	height:100px;
-	width:250px;
-	text-align:right;
+ .image{
+     height:95px;
+     width:169px;
+     margin:2px;
+     border:2px solid black;
+     display:inline-block;
+     position:absolute;
+     object-fit: cover;
 }
-.article-title{
-	position:absolute;
-	margin-left:180px;
-	padding-top:17px;
-	font-size:30px;
-	overflow:hidden;
-	white-space: nowrap;
+ .price1{
+     position:absolute;
+     right:0;
+     font-size:40px;
+     padding:25px;
+     background-color:#f8f8f8;
+     height:100px;
+     width:250px;
+     text-align:right;
 }
-.article-subtitle{
-	position:absolute;
-	margin-left:180px;
-	padding-top:57px;
-	font-size:20px;
-	overflow:hidden;
-	white-space: nowrap;
+ .price2{
+     position:absolute;
+     right:0;
+     font-size:40px;
+     padding:25px;
+     background-color:white;
+     height:100px;
+     width:250px;
+     text-align:right;
+}
+ .article-title{
+     position:absolute;
+     margin-left:180px;
+     padding-top:17px;
+     font-size:30px;
+     overflow:hidden;
+     white-space: nowrap;
+}
+ .article-subtitle{
+     position:absolute;
+     margin-left:180px;
+     padding-top:57px;
+     font-size:20px;
+     overflow:hidden;
+     white-space: nowrap;
 }
 /*CREATE MODAL*/
-.create-modal{
-	border:5px solid black;
-	position:fixed;
-	right:0;
-	background-color:white;
-	width:calc(100% - 400px);
-	height:calc(100% - 50px);
-	z-index:3;
-	border-radius:50px;
-	margin:25px;
-	opacity:0;
-	top:-200%;
-	transform:translate(-5%,-55%) scale(0.5);
-	transition:opacity 200ms ease-in-out,top 200ms ease-in-out,transform 200ms ease-in-out;
+ .create-modal{
+     position:fixed;
+     right:0;
+     background-color:white;
+     width:calc(100% - 400px);
+     height:calc(100% - 15px);
+     z-index:1;
+     border-radius:30px;
+     margin:5px auto;
+     opacity:0;
+     top:5px;
+     left: -150%;
+     transition: all .3s ease-in-out;
+    /*make it smooth*/
+     max-width:800px;
+     overflow-y:scroll;
 }
-.create-modal.active{
-	opacity:1;
-	top:50%;
-	transform:translate(-5%,-55%) scale(1);
-	transition: transform 200ms cubic-bezier(0.18,0.89,0.43,1.19);
-	
+ .create-modal.active{
+     opacity: 1;
+     margin:5px auto;
+     left: 300px;
+    /*slide it down smoothly*/
 }
 /* Modal Content/Box */
-.modal-content {
-	font-size:30px;
-  margin: 50px auto; /* 15% from the top and centered */
-  padding: 20px;
-  width: 90%; /* Could be more or less, depending on screen size */
+ .modal-content {
+     font-size:30px;
+     margin: 35px auto;
+    /* 15% from the top and centered */
+     padding: 10px;
+     width: 90%;
+    /* Could be more or less, depending on screen size */
+     width:100%;
+     height:calc(100% - 20px);
 }
-
 /* The Close Button */
-.close {
-  color: gray;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+ .close {
+     color: white;
+     float: right;
+     font-size: 28px;
+     font-weight: bold;
+     position:absolute;
+     right:20px;
+     top:10px;
 }
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+ .close:hover, .close:focus {
+     color: black;
+     text-decoration: none;
+     cursor: pointer;
 }
-.modal-text{
-	text-align:center;
-	margin:30px auto;
-	font-size:25px;
-	padding:10px;
+ .modal-header{
+     background-color:#F8F400;
+     position:absolute;
+     width:100%;
+     top:0;
+     left:0;
+     border-radius:5px 5px 0 0;
+     height:100px;
 }
-
-#modal-table{
-	text-align:center;
-	margin:auto;
+ .modal-header p{
+     font-size:35px;
+     margin-top:25px;
+     margin-left:60px;
+     position:absolute;
+}
+ .modal-header #subt{
+     font-size:20px;
+     margin-left:60px;
+     margin-top:60px;
+     position:absolute;
+}
+ .modal-header #button-circle{
+     color:white;
+     position:absolute;
+     right:20px;
+     top:10px;
+     width:60px;
+     height:60px;
+     text-align:center;
+     font-size:43px;
+     transition: 0.3s;
+}
+ .modal-header #button-circle:hover, .modal-header #button-circle:focus {
+     background-color:white;
+     color:black;
+     text-decoration: none;
+     cursor: pointer;
+}
+ #naziv{
+     transition: 0.3s;
+     display:block;
+     margin:31px auto 0 auto;
+     width:85%;
+     height:45px;
+     font-size:20px;
+     padding:2px;
+     background-color:black;
+     color:white;
+     border-radius:5px;
+}
+ #naziv:hover, #naziv:focus {
+     background-color:white;
+     color:black;
+     text-decoration: none;
+}
+ #lokacija:hover, #lokacija:focus {
+     background-color:white;
+     color:black;
+     text-decoration: none;
+}
+ #lokacija{
+     transition: 0.3s;
+     display:block;
+     margin:10px auto 0 auto;
+     width:85%;
+     height:45px;
+     font-size:20px;
+     padding:2px;
+     background-color:black;
+     color:white;
+     border-radius:5px;
+}
+ #slika:hover, #slika:focus {
+     background-color:white;
+     color:black;
+     text-decoration: none;
+}
+ #slika{
+     transition: 0.3s;
+     display:block;
+     margin:10px auto 0 auto;
+     width:85%;
+     height:170px;
+     font-size:20px;
+     padding:2px;
+     background-color:black;
+     color:white;
+     border-radius:5px;
+     color:gray;
+}
+ #send{
+     width:90px;
+     height:90px;
+     float:right;
+     background-color:black;
+     margin: 0 15px 5px 0;
+     border-radius:25px;
+     transition: 0.3s;
+     color:white;
+     border:0;
+}
+ #send:hover{
+     background-color:white;
+     color:black;
+     cursor:pointer;
+}
+ #send:active,#add-button:focus{
+     outline:0;
 }
