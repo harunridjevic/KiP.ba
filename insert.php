@@ -1,5 +1,5 @@
 <?php
- 
+		session_start();
         include "db_conn.php";
 
          
@@ -7,8 +7,12 @@
         $naziv =  $_REQUEST['naziv'];
         $cijena =  $_REQUEST['cijena'];
 		$lokacija =  $_REQUEST['lokacija'];
+		$kategorija =  $_REQUEST['kategorija'];
+		$opis =  $_REQUEST['opis'];
+		$kontakt =  $_REQUEST['kontakt'];
+		$kreator =  $_SESSION['user_name'];
 		
-        $sql = "INSERT INTO articles(naziv,cijena,lokacija) VALUES ('$naziv','$cijena','$lokacija')";
+        $sql = "INSERT INTO articles(naziv,cijena,lokacija,kategorija,opis,kontakt,kreator) VALUES ('$naziv','$cijena','$lokacija','$kategorija','$opis','$kontakt','$kreator')";
         
         mysqli_query($conn, $sql);
         

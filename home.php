@@ -34,15 +34,22 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         <div class="modal-content">
           <form action="insert.php" method="post" enctype="multipart/form-data">
             <input required type="text" name="naziv" placeholder="Naziv artikla (npr. Megane 2 1.9dci)" id="naziv">
+			<select id="lokacija" name="kategorija">
+				<option value="kategorija">Kategorija</option>
+				<option value="automobili">Automobili</option>
+				<option value="laptopi">Laptopi</option>
+				<option value="kategorija">Ostalo</option>
+			</select>
             <input required type="text" name="lokacija" id="lokacija" placeholder="Lokacija (npr. Sarajevo, Tuzla, Zenica...)">
-            <label required id="slika">
+            <label id="slika">
               <span style="float:left;width:20%;margin-top:40px;margin-left:20px;overflow:hidden;">Fotografija <span style="font-size:15px">
                   <br>(kliknite ovdje da dodate <br>vasu sliku) </span>
               </span>
               <input onchange="readURL(this);" style="visibility:hidden;width:1px;height:1px;" type="file" name="image">
               <img style="object-fit: cover;padding:2px;display:inline-block;float:right;border:1px solid black;" id="blah" src="logo/logov2.png" width="250px" height="150px" alt="your image" />
             </label>
-            <textarea required style="height:150px;resize: none;padding:15px" type="text" id="lokacija" placeholder="Opis (detaljan opis onoga sto prodajete)"></textarea>
+            <textarea required style="height:150px;resize: none;padding:15px" type="text" id="lokacija" placeholder="Opis (detaljan opis onoga sto prodajete)" name="opis"></textarea>
+			<input required type="text" name="kontakt" id="lokacija" placeholder="Kontakt (npr. 060-1111/111)">
             <input required style="width:50%;float:left;margin-left:60px;height:90px;" type="text" name="cijena" id="lokacija" placeholder="Cijena (npr. 7000KM)">
             <button type="submit" value="Submit" name="submit" id="send" style="float:right;margin-right:60px;margin-top:10px">
               <svg style="padding:15px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -117,15 +124,14 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 		if(!empty($input)){
 			$query2 = "SELECT * FROM articles WHERE naziv LIKE '%$input%'";
 			$res = mysqli_query($conn,$query2);
-			if(mysqli_num_rows($res)
-															<1){
+			if(mysqli_num_rows($res)<1){
 				echo "Nema rezultata";
 				
 			}else{
 				while($row2 = mysqli_fetch_array($res)){
 					if($grayOrWhite){
 		  echo "
-																<div class='article1'>
+																<div class='article1' onclick='goToArticle({$row['id']});'>
 																	<img class='image' src='img/{$row2['id']}.jpg'>
 																		<span class='article-title'>{$row2['naziv']}</span>
 																		<span class='article-subtitle'>#{$row2['id']} - ".substr($row2['datum-objave'],0,10)." - {$row2['lokacija']}</span>
@@ -134,7 +140,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 		$grayOrWhite=0;
 	}	else{
 		echo "
-																	<div class='article2'>
+																	<div class='article2' onclick='goToArticle({$row['id']});'>
 																		<img class='image' src='img/{$row2['id']}.jpg'>
 																			<span class='article-title'>{$row2['naziv']}</span>
 																			<span class='article-subtitle'>#{$row2['id']} - ".substr($row2['datum-objave'],0,10)." - {$row2['lokacija']}</span>
@@ -151,7 +157,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 		while($row = mysqli_fetch_assoc($retval)) {
 		  if($grayOrWhite){
 		  echo "
-																		<div class='article1'>
+																		<div class='article1' onclick='goToArticle({$row['id']});'>
 																			<img class='image' src='img/{$row['id']}.jpg'>
 																				<span class='article-title'>{$row['naziv']}</span>
 																				<span class='article-subtitle'>#{$row['id']} - ".substr($row['datum-objave'],0,10)." - {$row['lokacija']}</span>
@@ -160,7 +166,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 		$grayOrWhite=0;
 	}	else{
 		echo "
-																			<div class='article2'>
+																			<div class='article2' onclick='goToArticle({$row['id']});'>
 																				<img class='image' src='img/{$row['id']}.jpg'>
 																					<span class='article-title'>{$row['naziv']}</span>
 																					<span class='article-subtitle'>#{$row['id']} - ".substr($row['datum-objave'],0,10)." - {$row['lokacija']}</span>
@@ -239,6 +245,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         reader.readAsDataURL(input.files[0]);
       }
     }
+	
+	function goToArticle(id){
+		window.location.href = "article.php?id=" + id;
+	}
   </script>
 </html> <?php 
 
