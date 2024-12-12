@@ -45,7 +45,22 @@ Welcome to **KiP.ba**, a marketplace website project created in 2022! This was a
 
 ## Screenshots
 
-*Include some screenshots of the homepage, product listing page, and user dashboard here.*
+Homepage:
+
+![homepage](screenshots/homepage.PNG)
+
+
+
+Creating an article:
+
+![homepage](screenshots/create_article.PNG)
+
+
+
+Viewing an article:
+
+![homepage](screenshots/article.PNG)
+
 
 ---
 
@@ -55,7 +70,10 @@ Welcome to **KiP.ba**, a marketplace website project created in 2022! This was a
 kip.ba/
 ├── css/                # Stylesheets
 ├── db/                 # Database files
+├── img/                # Article images
 ├── logo/               # Site logo images
+├── pages/              # Page files
+├── screenshots/        # Website screenshots
 ├── index.php           # Login page
 └── README.md           # Documentation
 ```
