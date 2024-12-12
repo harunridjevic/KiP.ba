@@ -1,13 +1,14 @@
-<?php 
+<?php
 
 session_start();
-include "db_conn.php";
+include "../db/db_conn.php";
 
 //Get all the articles
-if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
-	$query1 = 'SELECT * FROM articles';
-	$retval = mysqli_query(  $conn,$query1 );
- ?>
+if (isset($_SESSION["id"]) && isset($_SESSION["user_name"])) {
+
+    $query1 = "SELECT * FROM articles";
+    $retval = mysqli_query($conn, $query1);
+    ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -15,7 +16,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="styles.css" type="text/css">
+    <link rel="stylesheet" href="../css/styles.css" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
@@ -32,24 +33,24 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
           <p id="subt">Ovdje objavljujete vas artikal</p>
         </div>
         <div class="modal-content">
-          <form action="insert.php" method="post" enctype="multipart/form-data">
+          <form action="../db/insert.php" method="post" enctype="multipart/form-data">
             <input required type="text" name="naziv" placeholder="Naziv artikla (npr. Megane 2 1.9dci)" id="naziv">
-			<select id="lokacija" name="kategorija">
-				<option value="kategorija">Kategorija</option>
-				<option value="automobili">Automobili</option>
-				<option value="laptopi">Laptopi</option>
-				<option value="kategorija">Ostalo</option>
-			</select>
+            <select id="lokacija" name="kategorija">
+              <option value="kategorija">Kategorija</option>
+              <option value="automobili">Automobili</option>
+              <option value="laptopi">Laptopi</option>
+              <option value="kategorija">Ostalo</option>
+            </select>
             <input required type="text" name="lokacija" id="lokacija" placeholder="Lokacija (npr. Sarajevo, Tuzla, Zenica...)">
             <label id="slika">
               <span style="float:left;width:20%;margin-top:40px;margin-left:20px;overflow:hidden;">Fotografija <span style="font-size:15px">
                   <br>(kliknite ovdje da dodate <br>vasu sliku) </span>
               </span>
               <input onchange="readURL(this);" style="visibility:hidden;width:1px;height:1px;" type="file" name="image">
-              <img style="object-fit: cover;padding:2px;display:inline-block;float:right;border:1px solid black;" id="blah" src="logo/logov2.png" width="250px" height="150px" alt="your image" />
+              <img style="object-fit: cover;padding:2px;display:inline-block;float:right;border:1px solid black;" id="blah" src="../logo/logov2.png" width="250px" height="150px" alt="your image" />
             </label>
             <textarea required style="height:150px;resize: none;padding:15px" type="text" id="lokacija" placeholder="Opis (detaljan opis onoga sto prodajete)" name="opis"></textarea>
-			<input required type="text" name="kontakt" id="lokacija" placeholder="Kontakt (npr. 060-1111/111)">
+            <input required type="text" name="kontakt" id="lokacija" placeholder="Kontakt (npr. 060-1111/111)">
             <input required style="width:50%;float:left;margin-left:60px;height:90px;" type="text" name="cijena" id="lokacija" placeholder="Cijena (npr. 7000KM)">
             <button type="submit" value="Submit" name="submit" id="send" style="float:right;margin-right:60px;margin-top:10px">
               <svg style="padding:15px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -62,9 +63,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     </div>
     <!--sidebar-->
     <div id="sidebar">
-	<a href="home.php">
-      <img id="logo" src="logo/logov1transparent.png">
-	</a>
+      <a href="home.php">
+        <img id="logo" src="../logo/logov1transparent.png">
+      </a>
       <!--SEARCH-->
       <form method="POST">
         <div id="search-div">
@@ -83,7 +84,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             <svg id="button-icons" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
             </svg>
-          </div> <?php echo $_SESSION['user_name']; ?>
+          </div> <?php echo $_SESSION["user_name"]; ?>
         </button>
         <button id="profile-button">
           <div id="button-circle">
@@ -115,67 +116,79 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     </div>
     <!--main content-->
     <main id="main"> <?php
-	$grayOrWhite=1;
-	//search system
-	$pretraga="";
-	if(isset($_POST['search'])and $_POST['search']!=""){
-		$input = $_POST['search'];
-		
-		if(!empty($input)){
-			$query2 = "SELECT * FROM articles WHERE naziv LIKE '%$input%'";
-			$res = mysqli_query($conn,$query2);
-			if(mysqli_num_rows($res)<1){
-				echo "Nema rezultata";
-				
-			}else{
-				while($row2 = mysqli_fetch_array($res)){
-					if($grayOrWhite){
-		  echo "
-																<div class='article1' onclick='goToArticle({$row['id']});'>
-																	<img class='image' src='img/{$row2['id']}.jpg'>
-																		<span class='article-title'>{$row2['naziv']}</span>
-																		<span class='article-subtitle'>#{$row2['id']} - ".substr($row2['datum-objave'],0,10)." - {$row2['lokacija']}</span>
-																		<span class='price1'>{$row2['cijena']}KM</span>
+    $grayOrWhite = 1;
+    //search system
+    $pretraga = "";
+    if (isset($_POST["search"]) and $_POST["search"] != "") {
+        $input = $_POST["search"];
+
+        if (!empty($input)) {
+            $query2 = "SELECT * FROM articles WHERE naziv LIKE '%$input%'";
+            $res = mysqli_query($conn, $query2);
+            if (mysqli_num_rows($res) < 1) {
+                echo "Nema rezultata";
+            } else {
+                while ($row2 = mysqli_fetch_array($res)) {
+                    if ($grayOrWhite) {
+                        echo "
+																
+																<div class='article1' onclick='goToArticle({$row2["id"]});'>
+																	<img class='image' src='../img/{$row2["id"]}.jpg'>
+																		<span class='article-title'>{$row2["naziv"]}</span>
+																		<span class='article-subtitle'>#{$row2["id"]} - " .
+                            substr($row2["datum-objave"], 0, 10) .
+                            " - {$row2["lokacija"]}</span>
+																		<span class='price1'>{$row2["cijena"]}KM</span>
 																	</div>";
-		$grayOrWhite=0;
-	}	else{
-		echo "
-																	<div class='article2' onclick='goToArticle({$row['id']});'>
-																		<img class='image' src='img/{$row2['id']}.jpg'>
-																			<span class='article-title'>{$row2['naziv']}</span>
-																			<span class='article-subtitle'>#{$row2['id']} - ".substr($row2['datum-objave'],0,10)." - {$row2['lokacija']}</span>
-																			<span class='price2'>{$row2['cijena']}KM</span>
+                        $grayOrWhite = 0;
+                    } else {
+                        echo "
+																	
+																	<div class='article2' onclick='goToArticle({$row2["id"]});'>
+																		<img class='image' src='../img/{$row2["id"]}.jpg'>
+																			<span class='article-title'>{$row2["naziv"]}</span>
+																			<span class='article-subtitle'>#{$row2["id"]} - " .
+                            substr($row2["datum-objave"], 0, 10) .
+                            " - {$row2["lokacija"]}</span>
+																			<span class='price2'>{$row2["cijena"]}KM</span>
 																		</div>";
-		$grayOrWhite=1;
-	}
-				}
-				
-			}
-		}
-	}//if search is empty just write out all the articles
-	else{
-		while($row = mysqli_fetch_assoc($retval)) {
-		  if($grayOrWhite){
-		  echo "
-																		<div class='article1' onclick='goToArticle({$row['id']});'>
-																			<img class='image' src='img/{$row['id']}.jpg'>
-																				<span class='article-title'>{$row['naziv']}</span>
-																				<span class='article-subtitle'>#{$row['id']} - ".substr($row['datum-objave'],0,10)." - {$row['lokacija']}</span>
-																				<span class='price1'>{$row['cijena']}KM</span>
+                        $grayOrWhite = 1;
+                    }
+                }
+            }
+        }
+    }
+    //if search is empty just write out all the articles
+    else {
+        while ($row = mysqli_fetch_assoc($retval)) {
+            if ($grayOrWhite) {
+                echo "
+																		
+																		<div class='article1' onclick='goToArticle({$row["id"]});'>
+																			<img class='image' src='../img/{$row["id"]}.jpg'>
+																				<span class='article-title'>{$row["naziv"]}</span>
+																				<span class='article-subtitle'>#{$row["id"]} - " .
+                    substr($row["datum-objave"], 0, 10) .
+                    " - {$row["lokacija"]}</span>
+																				<span class='price1'>{$row["cijena"]}KM</span>
 																			</div>";
-		$grayOrWhite=0;
-	}	else{
-		echo "
-																			<div class='article2' onclick='goToArticle({$row['id']});'>
-																				<img class='image' src='img/{$row['id']}.jpg'>
-																					<span class='article-title'>{$row['naziv']}</span>
-																					<span class='article-subtitle'>#{$row['id']} - ".substr($row['datum-objave'],0,10)." - {$row['lokacija']}</span>
-																					<span class='price2'>{$row['cijena']}KM</span>
+                $grayOrWhite = 0;
+            } else {
+                echo "
+																			
+																			<div class='article2' onclick='goToArticle({$row["id"]});'>
+																				<img class='image' src='../img/{$row["id"]}.jpg'>
+																					<span class='article-title'>{$row["naziv"]}</span>
+																					<span class='article-subtitle'>#{$row["id"]} - " .
+                    substr($row["datum-objave"], 0, 10) .
+                    " - {$row["lokacija"]}</span>
+																					<span class='price2'>{$row["cijena"]}KM</span>
 																				</div>";
-		$grayOrWhite=1;
-	}
-	}}
-   ?> </main>
+                $grayOrWhite = 1;
+            }
+        }
+    }
+    ?> </main>
   </body>
   <script>
     function init() {
@@ -245,19 +258,16 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         reader.readAsDataURL(input.files[0]);
       }
     }
-	
-	function goToArticle(id){
-		window.location.href = "article.php?id=" + id;
-	}
+
+    function goToArticle(id) {
+      window.location.href = "article.php?id=" + id;
+    }
   </script>
-</html> <?php 
+</html> <?php
+} else {
+    header("Location: ../index.php");
 
-}else{
-
-     header("Location: index.php");
-
-     exit();
-
+    exit();
 }
 
- ?>
+?>

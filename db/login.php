@@ -24,13 +24,13 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
     if (empty($uname)) {
 
-        header("Location: index.php?error=Korisnicko ime je potrebno");
+        header("Location: ../index.php?error=Korisnicko ime je potrebno");
 
         exit();
 
     }else if(empty($pass)){
 
-        header("Location: index.php?error=Sifra je potrebna");
+        header("Location: ../index.php?error=Sifra je potrebna");
 
         exit();
 
@@ -54,13 +54,13 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
                 $_SESSION['id'] = $row['id'];
 
-                header("Location: home.php");
+                header("Location: ../pages/home.php");
 
                 exit();
 
             }else{
 
-                header("Location: index.php?error=Netacno korisnicko ime ili sifra");
+                header("Location: ../index.php?error=Netacno korisnicko ime ili sifra");
 
                 exit();
 
@@ -68,7 +68,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
         }else{
 
-            header("Location: index.php?error=Netacno korisnicko ime ili sifra");
+            header("Location: ../index.php?error=Netacno korisnicko ime ili sifra");
 
             exit();
 
@@ -78,7 +78,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
 }else{
 
-    header("Location: index.php");
+    header("Location: ../index.php");
 
     exit();
 

@@ -24,13 +24,13 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
     if (empty($uname)) {
 
-        header("Location: registration.php?error=User Name is required");
+        header("Location: ../pages/registration.php?error=User Name is required");
 
         exit();
 
     }else if(empty($pass)){
 
-        header("Location: registration.php?error=Password is required");
+        header("Location: ../pages/tration.php?error=Password is required");
 
         exit();
 
@@ -44,10 +44,10 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
         $result = mysqli_query($conn, $sql);
 		
           
-		header("Location: index.php");
+		header("Location: ../index.php");
 		exit();
 		}else{
-			header("Location: registration.php?error=Username is taken");
+			header("Location: ../pages/registration.php?error=Username is taken");
 
         exit();
 		}
@@ -56,7 +56,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
 }else{
 
-    header("Location: index.php");
+    header("Location: ../index.php");
 
     exit();
 

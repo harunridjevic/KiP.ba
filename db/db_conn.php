@@ -15,3 +15,5 @@ if (!$conn) {
     echo "Konekcija neuspješna!";
 
 }
+
+?>
