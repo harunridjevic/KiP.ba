@@ -1,43 +1,84 @@
--BOSANSKI JEZIK - BOSNIAN LANGUAGE - 
+# KiP.ba
 
-KiP.ba - sajt za kupovinu i prodaju
+![KiP.ba Logo](logo/logov1.png)
 
-Ukoliko želite nešto prodati ili ukoliko trebate nešto kupiti ovo je pravo mjesto za vas. Stranica sadrži mnogobrojne artikle raznih kategorija. Nadam se da će vam se svidjeti jer je KiP.ba projekt kojeg razvija samo jedan srednjoškolac. Želim vam ugodno korištenje KiP-a! 
+Welcome to **KiP.ba**, a marketplace website project created in 2022! This was an experimental project designed to showcase my skills in web development using PHP, MySQL, HTML, CSS, and JavaScript. The website simulates a platform for users to buy and sell products.
 
+---
 
-Kako podesiti beta verziju sajta?
+## Features
 
-  1.Skinite XAMPP 
-  
-  2.Pokrenite Apache i MySQL server 
-  
-  3.Na localhost/phpMyAdmin sajtu ubacite mySQL bazu koja se nalazi u projektnom folderu. Ime baze treba biti kipba_baza 
-  
-  4.Prebacite projektni folder u folder C:/xampp/htdocs 
-  
-  5.Odite na pretrazivac i ukucajte localhost/kipba (ili kako god da se zove folder) 
+- **Dynamic Marketplace:** Users can browse, add, and manage product listings.
+- **User Accounts:** Basic user authentication and profile management.
+- **Database Integration:** All product and user data is stored and managed in an SQL database.
+- **Interactive Design:** Utilizes JavaScript for dynamic interactions and enhanced user experience.
+- **Responsive Frontend:** Designed with HTML and CSS for a clean and user-friendly interface.
 
-Uspjesno ste pokrenuli beta verziju KiP.ba! 
+---
 
------------------------------------- 
--ENGLESKI JEZIK - ENGLISH LANGUAGE -
+## Technologies Used
 
-KiP.ba - site for buying and selling
+- **Backend:** PHP (served locally using XAMPP).
+- **Database:** MySQL for storing user and product data.
+- **Frontend:** HTML, CSS, and JavaScript.
+- **Server Environment:** XAMPP for local development and testing.
 
-In case you wanted to sell or buy something, this is the right place for you. The website includes many articles of different categories. I hope you're going to like it because KiP.ba is a project of one highschooler. I wish you a pleasant experience using KiP! 
+---
 
+## Installation and Setup
 
-How to setup the beta version of the site? 
+1. **Install XAMPP:** Download and install [XAMPP](https://www.apachefriends.org/index.html) to serve the project locally.
+2. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/harunridjevic/kip.ba
+   cd kip.ba
+   ```
+3. **Set Up the Database:**
+   - Import the provided SQL file into your local MySQL server.
+   - Configure the database credentials in the `db\_config.php` file.
+4. **Start XAMPP:**
+   - Start Apache and MySQL services in the XAMPP control panel.
+   - Place the project files in the `htdocs` folder of your XAMPP installation.
+5. **Access the Website:** Open your browser and navigate to `http://localhost/kip.ba`.
 
-  1.Download and install XAMPP 
-  
-  2.Start up an Apache and MySQL server from XAMPP 
-  
-  3.Go to localhost/phpMyAdmin site and insert the mySQL database that you can find in the project folder. The name of the database should be kipba_baza 
-  
-  4.Move the project folder to the folder C:/xampp/htdocs 
-  
-  5.Go to your browser and type in localhost/kipba (or whatever the folder name is) in your browser url 
-  
-You have successfuly finished the setup of beta KiP.ba! 
------------------------------------- 
+---
+
+## Screenshots
+
+*Include some screenshots of the homepage, product listing page, and user dashboard here.*
+
+---
+
+## Project Structure
+
+```
+kip.ba/
+├── css/                # Stylesheets
+├── db/                 # Database files
+├── logo/               # Site logo images
+├── index.php           # Login page
+└── README.md           # Documentation
+```
+
+---
+
+## Future Improvements
+
+While this project was a great learning experience, there are areas for improvement:
+
+- Enhance user authentication (e.g., password hashing, email verification).
+- Add advanced search and filtering options.
+- Improve the design with a modern CSS framework like Tailwind or Bootstrap.
+
+---
+
+## Acknowledgements
+
+Thanks to all the resources and tutorials that helped shape this project. KiP.ba reflects my early steps into full-stack development.
+
+---
+
+## License
+
+This project is licensed under the MIT License. Feel free to use and modify it for your own learning and projects.
+
