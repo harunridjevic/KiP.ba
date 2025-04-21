@@ -1,3 +1,4 @@
+**⚠️ Disclaimer:** This is an **old project** created in 2022. It was developed for learning and experimentation purposes and is no longer actively maintained.
 # KiP.ba
 
 ![KiP.ba Logo](logo/logov1.png)
